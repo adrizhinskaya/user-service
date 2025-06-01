@@ -1,14 +1,12 @@
 package org.example.service;
 
+import lombok.Setter;
 import org.example.model.User;
 import org.example.repository.UserRepository;
 
 public class UserService {
+    @Setter
     private UserRepository userRepository;
-
-    public UserService() {
-        this.userRepository = new UserRepository();
-    }
 
     public void add(User user) {
         userRepository.add(user);
