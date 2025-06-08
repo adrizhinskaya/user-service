@@ -1,26 +1,14 @@
 package org.example.service;
 
-import lombok.Setter;
-import org.example.model.User;
-import org.example.repository.UserRepository;
+import org.example.model.dto.NewUserDto;
+import org.example.model.dto.UserDto;
 
-public class UserService {
-    @Setter
-    private UserRepository userRepository;
+public interface UserService {
+    UserDto create(NewUserDto newUserDto);
 
-    public void add(User user) {
-        userRepository.add(user);
-    }
+    UserDto getById(Long userId);
 
-    public void update(User newUser) {
-        userRepository.update(newUser);
-    }
+    UserDto update(Long userId, NewUserDto newUserDto);
 
-    public User getById(Integer id) {
-        return userRepository.getById(id);
-    }
-
-    public void deleteById(Integer id) {
-        userRepository.delete(id);
-    }
+    void delete(Long userId);
 }
