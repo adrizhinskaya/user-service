@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.logger.ColoredCRUDLogger;
@@ -19,6 +20,7 @@ public class UserController {
 
     @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Добавление нового пользователя")
     public UserDto create(@Validated @RequestBody NewUserDto newUserDto) {
         ColoredCRUDLogger.logPost("/users", newUserDto.toString());
         UserDto result = userService.create(newUserDto);
@@ -27,6 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{userId}")
+    @Operation(summary = "Получение инфорации о пользователе")
     public UserDto getById(@PathVariable Long userId) {
         String url = String.format("/users/{%s}", userId);
         ColoredCRUDLogger.logGet(url);
@@ -36,6 +39,7 @@ public class UserController {
     }
 
     @PatchMapping("/user/{userId}")
+    @Operation(summary = "Обновление пользователя")
     public UserDto update(@PathVariable Long userId,
                           @Validated @RequestBody NewUserDto newUserDto) {
         String url = String.format("/users/{%s}", userId);
@@ -47,6 +51,7 @@ public class UserController {
 
     @DeleteMapping("/user/{userId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Удаление пользователя")
     public void delete(@PathVariable Long userId) {
         String url = String.format("/users/{%s}", userId);
         ColoredCRUDLogger.logDelete(url);
