@@ -1,8 +1,8 @@
 package org.example.model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,6 +20,7 @@ public class User {
     @Column(name = "name")
     private String name;
 
+    @Column(unique = true, nullable = false)
     private String email;
 
     private Integer age;
